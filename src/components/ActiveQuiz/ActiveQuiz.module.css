@@ -1,2 +1,10 @@
 .activeQuiz {
+  padding: 20px;
+  border: 2px solid#fff;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+.question {
+  display: flex;
+  justify-content: space-between;
 }
