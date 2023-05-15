@@ -1,5 +1,6 @@
+import AnswersList from '../AnswersList/AnswersList';
 import styles from './ActiveQuiz.module.css';
-export default function ActiveQuiz() {
+export default function ActiveQuiz({ answers }) {
   return (
     <div className={styles.activeQuiz}>
       <p className={styles.question}>
@@ -8,12 +9,7 @@ export default function ActiveQuiz() {
         </span>
         <small>2 из 10</small>
       </p>
-      <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-      </ul>
+      <AnswersList answers={answers} />
     </div>
   );
 }
