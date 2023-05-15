@@ -8,30 +8,45 @@ export default class Quiz extends Component {
     this.state = {
       quiz: [
         {
+          rightAnswerId: 2,
+          question: 'Вопрос номер 2?',
           answers: [
             {
               text: 'Ответ 1',
+              id: 1,
             },
             {
               text: 'Ответ 2',
+              id: 2,
             },
             {
               text: 'Ответ 3',
+              id: 3,
             },
             {
               text: 'Ответ 4',
+              id: 4,
             },
           ],
         },
       ],
     };
   }
+
+  onAnswerClick = (answerId) => {
+    console.log(answerId);
+  };
+
   render() {
     return (
       <div className={styles.quiz}>
         <div className={styles.quiz__wrapper}>
           <h1>Ответьте на все вопросы</h1>
-          <ActiveQuiz answers={this.state.quiz[0].answers} />
+          <ActiveQuiz
+            answers={this.state.quiz[0].answers}
+            question={this.state.quiz[0].question}
+            onAnswerClick={this.onAnswerClick}
+          />
         </div>
       </div>
     );
