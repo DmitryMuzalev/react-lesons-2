@@ -1,0 +1,15 @@
+.btn {
+  padding: 7px 15px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  margin: 20px 15px 0px 0px;
+}
+
+.primary {
+  background-color: blue;
+}
+.success {
+  background-color: green;
+}

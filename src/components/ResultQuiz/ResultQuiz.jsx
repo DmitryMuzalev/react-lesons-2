@@ -1,3 +1,4 @@
+import Button from '../UI/Button/Button';
 import styles from './ResultQuiz.module.css';
 export default function ResultQuiz({ results, quiz, onResetQuiz }) {
   const successAnswer = Object.values(results).filter(
@@ -26,13 +27,12 @@ export default function ResultQuiz({ results, quiz, onResetQuiz }) {
       <p>
         Результат теста: {successAnswer} из {quiz.length}
       </p>
-      <button
-        onClick={() => {
-          onResetQuiz();
-        }}
-      >
-        Пройти ещё раз
-      </button>
+
+      <Button onClick={onResetQuiz} type="primary">
+        Пройти тест ещё раз
+      </Button>
+
+      <Button type="success">Меню</Button>
     </div>
   );
 }
