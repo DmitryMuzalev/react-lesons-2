@@ -6,6 +6,7 @@ export default function ActiveQuiz({
   onAnswerClick,
   quizLength,
   answerNumber,
+  answerState,
 }) {
   return (
     <div className={styles.activeQuiz}>
@@ -17,7 +18,11 @@ export default function ActiveQuiz({
           {answerNumber} из {quizLength}
         </small>
       </p>
-      <AnswersList answers={answers} onAnswerClick={onAnswerClick} />
+      <AnswersList
+        answers={answers}
+        onAnswerClick={onAnswerClick}
+        answerState={answerState}
+      />
     </div>
   );
 }

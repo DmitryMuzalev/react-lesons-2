@@ -9,3 +9,11 @@
   background-color: rgba(255, 255, 255, 0.2);
   transition: background 0.3s ease-in-out;
 }
+
+.answerItems.success {
+  background-color: rgba(161, 240, 69, 0.7);
+}
+
+.answerItems.error {
+  background-color: rgba(240, 87, 108, 0.7);
+}

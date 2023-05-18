@@ -6,6 +6,7 @@ export default class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      answerState: null,
       activeQuestion: 0,
       quiz: [
         {
@@ -82,9 +83,31 @@ export default class Quiz extends Component {
   }
 
   onAnswerClick = (answerId) => {
-    console.log(answerId);
-    this.setState({ activeQuestion: this.state.activeQuestion + 1 });
+    if (this.state.answerState) {
+      const key = [...Object.keys(this.state.answerState)];
+      if (this.state.answerState[key] === 'success') return;
+    }
+    const question = this.state.quiz[this.state.activeQuestion];
+    if (question.rightAnswerId === answerId) {
+      this.setState({ answerState: { [answerId]: 'success' } });
+      const timeout = setTimeout(() => {
+        if (this.isQuizFinished()) {
+          console.log('Finished');
+        } else {
+          this.setState({
+            activeQuestion: this.state.activeQuestion + 1,
+            answerState: null,
+          });
+        }
+        clearTimeout(timeout);
+      }, 1000);
+    } else {
+      this.setState({ answerState: { [answerId]: 'error' } });
+    }
   };
+
+  isQuizFinished = () =>
+    this.state.activeQuestion + 1 === this.state.quiz.length;
 
   render() {
     return (
@@ -97,6 +120,7 @@ export default class Quiz extends Component {
             onAnswerClick={this.onAnswerClick}
             quizLength={this.state.quiz.length}
             answerNumber={this.state.activeQuestion + 1}
+            answerState={this.state.answerState}
           />
         </div>
       </div>

@@ -3,11 +3,9 @@ import Layout from './hoc/Layout/Layout';
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <Quiz />
-      </Layout>
-    </div>
+    <Layout>
+      <Quiz />
+    </Layout>
   );
 }
 
