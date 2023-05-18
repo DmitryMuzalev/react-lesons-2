@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import styles from './Quiz.module.css';
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz';
+import ResultQuiz from '../../components/ResultQuiz/ResultQuiz';
 
 export default class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isFinished: true,
       answerState: null,
       activeQuestion: 0,
       quiz: [
@@ -92,7 +94,7 @@ export default class Quiz extends Component {
       this.setState({ answerState: { [answerId]: 'success' } });
       const timeout = setTimeout(() => {
         if (this.isQuizFinished()) {
-          console.log('Finished');
+          this.setState({ isFinished: true });
         } else {
           this.setState({
             activeQuestion: this.state.activeQuestion + 1,
@@ -113,15 +115,23 @@ export default class Quiz extends Component {
     return (
       <div className={styles.quiz}>
         <div className={styles.quiz__wrapper}>
-          <h1>Ответьте на все вопросы</h1>
-          <ActiveQuiz
-            answers={this.state.quiz[this.state.activeQuestion].answers}
-            question={this.state.quiz[this.state.activeQuestion].question}
-            onAnswerClick={this.onAnswerClick}
-            quizLength={this.state.quiz.length}
-            answerNumber={this.state.activeQuestion + 1}
-            answerState={this.state.answerState}
-          />
+          <h1>
+            {this.state.isFinished
+              ? 'Ваш результат: '
+              : 'Ответьте на все вопросы'}
+          </h1>
+          {this.state.isFinished ? (
+            <ResultQuiz />
+          ) : (
+            <ActiveQuiz
+              answers={this.state.quiz[this.state.activeQuestion].answers}
+              question={this.state.quiz[this.state.activeQuestion].question}
+              onAnswerClick={this.onAnswerClick}
+              quizLength={this.state.quiz.length}
+              answerNumber={this.state.activeQuestion + 1}
+              answerState={this.state.answerState}
+            />
+          )}
         </div>
       </div>
     );
