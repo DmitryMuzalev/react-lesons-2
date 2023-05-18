@@ -7,7 +7,8 @@ export default class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFinished: true,
+      results: {},
+      isFinished: false,
       answerState: null,
       activeQuestion: 0,
       quiz: [
@@ -90,7 +91,13 @@ export default class Quiz extends Component {
       if (this.state.answerState[key] === 'success') return;
     }
     const question = this.state.quiz[this.state.activeQuestion];
+    const results = this.state.results;
     if (question.rightAnswerId === answerId) {
+      if (!results[question.id]) {
+        results[question.id] = 'success';
+        this.setState(results);
+      }
+
       this.setState({ answerState: { [answerId]: 'success' } });
       const timeout = setTimeout(() => {
         if (this.isQuizFinished()) {
@@ -104,12 +111,23 @@ export default class Quiz extends Component {
         clearTimeout(timeout);
       }, 1000);
     } else {
+      results[question.id] = 'error';
+      this.setState(results);
       this.setState({ answerState: { [answerId]: 'error' } });
     }
   };
 
   isQuizFinished = () =>
     this.state.activeQuestion + 1 === this.state.quiz.length;
+
+  onResetQuiz = () => {
+    this.setState({
+      results: {},
+      isFinished: false,
+      answerState: null,
+      activeQuestion: 0,
+    });
+  };
 
   render() {
     return (
@@ -121,7 +139,11 @@ export default class Quiz extends Component {
               : 'Ответьте на все вопросы'}
           </h1>
           {this.state.isFinished ? (
-            <ResultQuiz />
+            <ResultQuiz
+              results={this.state.results}
+              quiz={this.state.quiz}
+              onResetQuiz={this.onResetQuiz}
+            />
           ) : (
             <ActiveQuiz
               answers={this.state.quiz[this.state.activeQuestion].answers}

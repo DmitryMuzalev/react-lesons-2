@@ -1,23 +1,38 @@
 import styles from './ResultQuiz.module.css';
-export default function ResultQuiz() {
+export default function ResultQuiz({ results, quiz, onResetQuiz }) {
+  const successAnswer = Object.values(results).filter(
+    (r) => r !== 'error'
+  ).length;
+
   return (
     <div className={styles.result}>
       <ul>
-        <li>
-          <p>
-            <strong>1. </strong>Вопрос номер 1?
-            <i className={'fa fa-check ' + styles.success} />
-          </p>
-        </li>
-        <li>
-          <p>
-            <strong>2. </strong>Вопрос номер 2?{' '}
-            <i className={'fa fa-times ' + styles.error} />
-          </p>
-        </li>
+        {quiz.map((itemQuiz, index) => {
+          const iconClasses = [
+            'fa',
+            results[itemQuiz.id] === 'error' ? 'fa-times' : 'fa-check',
+            styles[results[itemQuiz.id]],
+          ];
+          return (
+            <li key={index}>
+              <strong>{`${itemQuiz.id}. `}</strong>
+              {itemQuiz.question}
+
+              <i className={iconClasses.join(' ')} />
+            </li>
+          );
+        })}
       </ul>
-      <p>Результат теста: 3 из 10</p>
-      <button>Пройти ещё раз</button>
+      <p>
+        Результат теста: {successAnswer} из {quiz.length}
+      </p>
+      <button
+        onClick={() => {
+          onResetQuiz();
+        }}
+      >
+        Пройти ещё раз
+      </button>
     </div>
   );
 }
