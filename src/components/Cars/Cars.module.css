@@ -1,0 +1,13 @@
+.carsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.car {
+  cursor: pointer;
+  border: 2px solid black;
+  padding: 40px 20px;
+  width: 500px;
+}
