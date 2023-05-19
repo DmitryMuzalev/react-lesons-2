@@ -16,6 +16,11 @@ export default class Layout extends Component {
       isOpenMenu: !this.state.isOpenMenu,
     });
   };
+  onCloseMenu = () => {
+    this.setState({
+      isOpenMenu: false,
+    });
+  };
 
   render() {
     return (
@@ -24,7 +29,10 @@ export default class Layout extends Component {
           onToggleMenu={this.onToggleMenu}
           isOpenMenu={this.state.isOpenMenu}
         />
-        <NavigationMenu isOpenMenu={this.state.isOpenMenu} />
+        <NavigationMenu
+          isOpenMenu={this.state.isOpenMenu}
+          onCloseMenu={this.onCloseMenu}
+        />
         <main>{this.props.children}</main>
       </div>
     );

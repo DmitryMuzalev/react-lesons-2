@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styles from './NavigationMenu.module.css';
+import Backdrop from '../../Backdrop/Backdrop';
 
 export default class NavigationMenu extends Component {
   constructor(props) {
@@ -30,9 +31,14 @@ export default class NavigationMenu extends Component {
       .join(' ')
       .trim();
     return (
-      <nav className={allStyles}>
-        <ul>{this.renderLinks()}</ul>
-      </nav>
+      <>
+        <nav className={allStyles}>
+          <ul>{this.renderLinks()}</ul>
+        </nav>
+        {this.props.isOpenMenu ? (
+          <Backdrop onCloseMenu={this.props.onCloseMenu} />
+        ) : null}
+      </>
     );
   }
 }
