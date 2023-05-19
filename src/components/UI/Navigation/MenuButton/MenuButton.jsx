@@ -1,6 +1,5 @@
 import styles from './MenuButton.module.css';
 export default function MenuButton({ onToggleMenu, isOpenMenu }) {
-  console.log(isOpenMenu);
   const allStyles = [
     styles.menuButton,
     'fa',

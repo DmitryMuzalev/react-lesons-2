@@ -1,4 +1,5 @@
-import MenuButton from '../../components/UI/Navigation/MenuButton';
+import MenuButton from '../../components/UI/Navigation/MenuButton/MenuButton';
+import NavigationMenu from '../../components/UI/Navigation/NavigationMenu/NavigationMenu';
 import styles from './Layout.module.css';
 import { Component } from 'react';
 
@@ -11,7 +12,6 @@ export default class Layout extends Component {
   }
 
   onToggleMenu = () => {
-    console.log('Click Btn');
     this.setState({
       isOpenMenu: !this.state.isOpenMenu,
     });
@@ -24,6 +24,7 @@ export default class Layout extends Component {
           onToggleMenu={this.onToggleMenu}
           isOpenMenu={this.state.isOpenMenu}
         />
+        <NavigationMenu isOpenMenu={this.state.isOpenMenu} />
         <main>{this.props.children}</main>
       </div>
     );
