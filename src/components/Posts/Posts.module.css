@@ -1,0 +1,23 @@
+.postsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.postsList__link {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+.postsList__link:hover {
+  background-color: black;
+  color: white;
+}
+
+.postsList__item {
+  border: 2px solid black;
+  width: 350px;
+}

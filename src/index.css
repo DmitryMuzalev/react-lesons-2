@@ -21,3 +21,19 @@ code {
 ul {
   list-style: none;
 }
+
+a {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: grey;
+}
+a.active-link {
+  color: black;
+  text-decoration: underline;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
