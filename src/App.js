@@ -4,6 +4,7 @@ import About from './components/About/About';
 import Home from './components/Home/Home';
 import Posts from './components/Posts/Posts';
 import Post from './components/Posts/Post/Post';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 function App() {
   const setActive = ({ isActive }) => {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/posts/:postId" element={<Post />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

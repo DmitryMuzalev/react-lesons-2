@@ -1,4 +1,7 @@
 .post {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
   margin: 0 auto;
   width: 400px;
   padding: 25px;
