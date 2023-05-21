@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './Posts.module.css';
 import { Link } from 'react-router-dom';
+import Auth from '../../hoc/Auth';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -28,4 +29,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Auth(Posts);

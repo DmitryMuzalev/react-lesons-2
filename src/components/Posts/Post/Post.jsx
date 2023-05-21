@@ -23,7 +23,7 @@ export default function Post() {
             <h2>{post.title}</h2>
             <p>{post.body}</p>
             <button style={{ alignSelf: 'end' }} onClick={onBack}>
-              Назад
+              Back
             </button>
           </>
         )}
