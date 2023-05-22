@@ -26,9 +26,8 @@ ul {
 }
 
 .container {
-  padding: 50px 20px;
+  padding: 80px 20px;
   width: 1200px;
   height: 100vh;
   margin: 0 auto;
-  text-align: center;
 }

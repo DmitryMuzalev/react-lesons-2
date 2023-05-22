@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Button/Button';
 import styles from './ResultQuiz.module.css';
 export default function ResultQuiz({ results, quiz, onResetQuiz }) {
+  const navigate = useNavigate();
+
   const successAnswer = Object.values(results).filter(
     (r) => r !== 'error'
   ).length;
+
+  const onBack = () => {
+    navigate(-1);
+  };
 
   return (
     <div className={styles.result}>
@@ -32,7 +39,9 @@ export default function ResultQuiz({ results, quiz, onResetQuiz }) {
         Пройти тест ещё раз
       </Button>
 
-      <Button type="success">Меню</Button>
+      <Button type="success" onClick={onBack}>
+        Список тестов
+      </Button>
     </div>
   );
 }
