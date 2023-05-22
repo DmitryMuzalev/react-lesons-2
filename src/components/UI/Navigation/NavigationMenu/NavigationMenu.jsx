@@ -1,12 +1,18 @@
 import { Component } from 'react';
 import styles from './NavigationMenu.module.css';
 import Backdrop from '../../Backdrop/Backdrop';
+import { NavLink } from 'react-router-dom';
 
 export default class NavigationMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      links: [1, 2, 3],
+      links: [
+        { label: 'Авторизация', path: '/auth' },
+        { label: 'Главня', path: '/' },
+        { label: 'Список тестов', path: '/quiz-list' },
+        { label: 'Создать тест', path: '/quiz-creator' },
+      ],
     };
   }
 
@@ -15,9 +21,13 @@ export default class NavigationMenu extends Component {
     return links.map((link, index) => {
       return (
         <li key={index}>
-          <a href="#link" className={styles.navigationMenu__link}>
-            Link {link}
-          </a>
+          <NavLink
+            to={link.path}
+            className={styles.navigationMenu__link}
+            onClick={this.props.onCloseMenu}
+          >
+            {link.label}
+          </NavLink>
         </li>
       );
     });
