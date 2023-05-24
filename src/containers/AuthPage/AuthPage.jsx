@@ -14,29 +14,52 @@ export default function AuthPage() {
     reset();
   };
 
+  const emailValidationPatter =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const passwordValidationPatter = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
   return (
     <div className="container">
       <div className={styles.auth}>
         <h2>Авторизация</h2>
         <form className={styles.authForm} onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="">
+          <label htmlFor="login">
             Логин :
             <input
               type="email"
+              placeholder="someone@example.com"
               autoFocus
+              id="login"
               {...register('login', {
                 required: 'Поле обязательно для заполнения ',
-                pattern:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                pattern: {
+                  value: emailValidationPatter,
+                  message: 'Некорректный адрес электронной почты',
+                },
               })}
             />
             {errors.login && (
               <p className={styles.errorMessage}>{errors.login.message}</p>
             )}
           </label>
-          <label htmlFor="">
+          <label htmlFor="password">
             Пароль :
-            <input type="password" {...register('password')} />
+            <input
+              id="password"
+              type="password"
+              placeholder="Your password..."
+              {...register('password', {
+                required: 'Поле обязательно для заполнения ',
+                pattern: {
+                  value: passwordValidationPatter,
+                  message:
+                    'Минимум 8 символов, минимум одна буква и одна цифра',
+                },
+              })}
+            />
+            {errors.password && (
+              <p className={styles.errorMessage}>{errors.password.message}</p>
+            )}
           </label>
           <div className={styles.authForm__btns}>
             <button type="submit">Войти</button>

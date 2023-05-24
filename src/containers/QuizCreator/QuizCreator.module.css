@@ -1,0 +1,15 @@
+.quizCreator {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+.quizCreator__form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 500px;
+  padding: 18px;
+}
